@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+// import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import auth from '../../firebase';
+// import auth from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 

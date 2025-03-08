@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase';
 import { AuthContext } from '../../Providers/AuthProvider';
@@ -12,7 +12,7 @@ const LogIn = () => {
     const gitProvider = new GithubAuthProvider();
     const navigate = useNavigate();
 
-    const { user, setUser, userSignIn } = useContext(AuthContext);
+    const { user, setUser, userSignIn,handleSignout } = useContext(AuthContext);
 
 
     const handleGoogleSignIn = () => {
@@ -68,22 +68,14 @@ const LogIn = () => {
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
+                // const errorCode = error.code;
                 const errorMessage = error.message;
                 setUser(null);
                 console.log(errorMessage);
             });
     }
 
-    const handleSignout = () => {
-        signOut(auth)
-            .then(() => {
-                setUser(null);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    }
+
 
     return (
         <div className="flex justify-center items-center h-screen ">
