@@ -1,11 +1,16 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import auth from '../../firebase';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Register = () => {
     const[show, setShow] = useState(true);
     const navigate = useNavigate();
+
+    const {setUser, createUser} = useContext(AuthContext);
+
+
     const handleRegister = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -16,19 +21,39 @@ const Register = () => {
             alert("Passwords do not match!");
             return;
         }
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("User registered with:", user);
-                alert("User registered successfully!");
-                navigate('/login');
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
 
-            });
+        createUser(email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log("User registered with:", user);
+            alert("User registered successfully!");
+            setUser(user);
+            navigate('/login');
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+        }
+        );
+
+        // createUserWithEmailAndPassword(auth, email, password)
+        //     .then((userCredential) => {
+        //         const user = userCredential.user;
+        //         console.log("User registered with:", user);
+        //         alert("User registered successfully!");
+        //         navigate('/login');
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+
+        //     });
         // console.log("User registered with:", email, password);
+
+
+        
+
     };
 
     return (

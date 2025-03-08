@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const LogIn = () => {
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const provider = new GoogleAuthProvider();
     const gitProvider = new GithubAuthProvider();
     const navigate = useNavigate();
 
+    const { user, setUser, userSignIn } = useContext(AuthContext);
+
+
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 console.log(result.user);
                 setUser(result.user);
+                navigate('/');
             })
             .catch((error) => {
                 console.log(error.message);
@@ -28,6 +33,7 @@ const LogIn = () => {
             .then((result) => {
                 console.log(result.user);
                 setUser(result.user);
+                navigate('/');
             })
             .catch((error) => {
                 console.log(error.message);
@@ -39,11 +45,26 @@ const LogIn = () => {
     const handleSignIn = (e) => {
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth, email, password)
+        // signInWithEmailAndPassword(auth, email, password)
+        //     .then((userCredential) => {
+        //         // Signed in 
+        //         const user = userCredential.user;
+        //         setUser(user);
+        //         // ...
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //         setUser(null);
+        //         console.log(errorMessage);
+        //     });
+
+        userSignIn(email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 setUser(user);
+                navigate('/');
                 // ...
             })
             .catch((error) => {
