@@ -4,6 +4,7 @@ import auth from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+    const[show, setShow] = useState(true);
     const navigate = useNavigate();
     const handleRegister = (e) => {
         e.preventDefault();
@@ -43,22 +44,22 @@ const Register = () => {
                         required
                     />
                     <input
-                        type="password"
+                        type={show ? "password" : "text"}
                         name='password'
                         placeholder="Password"
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                         required
                     />
                     <input
-                        type="password"
+                        type={show ? "password" : "text"}
                         name='confirmPassword'
                         placeholder="Confirm Password"
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                         required
-                    />
+                    /><span className='border' onClick={()=>setShow(!show)}>{show?"Show Pass":"Hide Pass"}</span>
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
+                        className="w-full mt-2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
                         Register
                     </button>
                 </form>
