@@ -6,3 +6,11 @@
 @theme {
     --font-poppins: "Poppins", sans-serif; 
   }
+
+  a.active {
+  color: #403f3f;
+  font-weight: 600;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  border: 1px solid #e7e7e7;
+  }

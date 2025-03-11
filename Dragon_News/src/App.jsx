@@ -1,8 +1,8 @@
 
 
 import './App.css'
-import LoginPage from './Components/LoginPage/LoginPage'
-import RegisterPage from './Components/RegisterPage/RegisterPage'
+import LoginPage from './Pages/LoginPage'
+import RegisterPage from './Pages/RegisterPage'
 
 function App() {
 
