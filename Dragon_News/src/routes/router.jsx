@@ -6,6 +6,10 @@ import {
 } from "react-router-dom";
 import HomeLayout from '../layouts/Homelayout';
 import CategoryNews from '../Pages/CategoryNews';
+import AuthProvider from '../../../Firebase-Auth/src/Providers/AuthProvider';
+import AuthLayout from '../layouts/AuthLayout';
+import LoginPage from '../Pages/LoginPage';
+import RegisterPage from '../Pages/RegisterPage';
 
 const router = createBrowserRouter([
     {
@@ -29,13 +33,20 @@ const router = createBrowserRouter([
         element: <h1>News</h1>
     },
     {
-        path: "/login",
-        element: <h1>Login</h1>
+        path: "/auth",
+        element: <AuthLayout></AuthLayout>,
+        children: [
+            {
+                path: "/auth/login",
+                element: <LoginPage></LoginPage>
+            },
+            {
+                path: "/auth/register",
+                element: <RegisterPage></RegisterPage>
+            },
+        ]
     },
-    {
-        path: "/register",
-        element: <h1>Register</h1>
-    },
+    
     {
         path: "*",
         element: <h1>Login</h1>

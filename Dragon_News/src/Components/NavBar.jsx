@@ -16,8 +16,8 @@ const NavBar = () => {
             <div className="login flex gap-5 items-center">
 
                 <img src={user}/>
-                <button className='bg-[#403F3F] text-white px-4 text-xl font-semibold py-2'>Login</button>
-                <button className='bg-[#403F3F] text-white px-4 text-xl font-semibold py-2 '>Log Out</button>
+                <Link to={"/auth/login"} className='bg-[#403F3F] text-white px-4 text-xl font-semibold py-2'>Login</Link>
+                <Link className='bg-[#403F3F] text-white px-4 text-xl font-semibold py-2 '>Log Out</Link>
             </div>
 
         </div>
