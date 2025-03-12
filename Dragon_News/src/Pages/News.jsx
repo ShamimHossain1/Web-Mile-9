@@ -2,6 +2,7 @@ import React from 'react';
 import RightNavbar from '../Components/Layout-Components/RightNavbar';
 import Header from '../Components/Header';
 import { Link, useLoaderData } from 'react-router-dom';
+import NavBar from '../Components/NavBar';
 
 const News = () => {
     const data = useLoaderData();
@@ -12,6 +13,9 @@ const News = () => {
             <header>
                 <Header></Header>
             </header>
+            <nav className='w-10/12 mx-auto'>
+                <NavBar></NavBar>
+            </nav>
             <main className="w-11/12 mx-auto grid grid-cols-12 gap-5">
                 <section className="col-span-9">
                     <h2 className="font-semibold mb-3">Dragon News</h2>

@@ -6,7 +6,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const RegisterPage = () => {
 
-  const { setUser, createNewUser } = useContext(AuthContext);
+  const { setUser, createNewUser, updateUserInfo } = useContext(AuthContext);
   const navigate = useNavigate();  // Fix the incorrect `new useNavigate()` to `useNavigate()`
 
   const handleRegister = (e) => {
@@ -23,9 +23,15 @@ const RegisterPage = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
+        updateUserInfo({ displayName: name, photoURL: photo })
+          .then((result) => {
+            navigate("/");
+          }).catch((err) => {
+
+          });
 
         console.log("User created successfully:", user);
-        navigate("/auth/login");  // Redirect to login page
+        // Redirect to login page
       })
       .catch((error) => {
         console.error("Error creating user:", error.message);
