@@ -17,7 +17,7 @@ const RegisterPage = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log("Name:", name, "Photo URL:", photo);  // Check if name and photo URL are correct
+    // console.log("Name:", name, "Photo URL:", photo);  // Check if name and photo URL are correct
 
     createNewUser(email, password)
       .then((result) => {
@@ -30,7 +30,7 @@ const RegisterPage = () => {
 
           });
 
-        console.log("User created successfully:", user);
+        // console.log("User created successfully:", user);
         // Redirect to login page
       })
       .catch((error) => {

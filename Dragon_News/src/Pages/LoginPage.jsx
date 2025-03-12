@@ -16,7 +16,7 @@ const LoginPage = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        console.log("User created successfully:", user);
+        // console.log("User created successfully:", user);
         Navigate(location.state ? location.state : '/');
       })
       .catch((error) => {

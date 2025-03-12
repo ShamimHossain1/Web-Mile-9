@@ -11,7 +11,7 @@ const SocialLogin = () => {
             .then((result) => {
                 const user = result.user;
                 setUser(user);
-                console.log("User created successfully:", user);
+                // console.log("User created successfully:", user);
             })
             .catch((error) => {
                 console.error("Error creating user:", error.message);
