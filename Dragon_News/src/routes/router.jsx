@@ -10,6 +10,7 @@ import AuthProvider from '../../../Firebase-Auth/src/Providers/AuthProvider';
 import AuthLayout from '../layouts/AuthLayout';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
+import News from '../Pages/News';
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
         element: <HomeLayout />,
         children: [
             {
-                path: "",
+                path: "/",
                 element: <Navigate to={'/category/01'}></Navigate>,
             },
             {
@@ -29,8 +30,9 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/news",
-        element: <h1>News</h1>
+        path: "/news/:id",
+        element: <News></News>,
+        loader: ({ params }) => fetch(`https://openapi.programming-hero.com/api/news/${params.id}`),
     },
     {
         path: "/auth",
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
             },
         ]
     },
-    
+
     {
         path: "*",
         element: <h1>Login</h1>
