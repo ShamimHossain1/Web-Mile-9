@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const LoginPage = () => {
   const Navigate = useNavigate();
-
-  const { setUser, createNewUser, logIn, logOut, googleLogin } = useContext(AuthContext);
+  const location = useLocation();
+  // console.log(location.state);
+  const { setUser, logIn } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -16,7 +17,7 @@ const LoginPage = () => {
         const user = result.user;
         setUser(user);
         console.log("User created successfully:", user);
-        Navigate("/");
+        Navigate(location.state ? location.state : '/');
       })
       .catch((error) => {
         console.error("Error creating user:", error.message);
